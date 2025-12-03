@@ -10,9 +10,11 @@
 * **고급 검색 시스템 (Advanced Retrieval)**:
     * **Ensemble Retriever**: 키워드 검색(BM25)과 의미 기반 검색(FAISS Vector)을 결합하여 UAV 분야의 전문 용어(예: SINR, Trajectory Optimization)와 문맥적 의미를 모두 포착합니다.
     * **Cross-Encoder Reranker**: 검색된 문서의 관련성을 정밀하게 재순위화하여 정확도를 높입니다.
+
 * **에이전트 워크플로우 (LangGraph)**:
     * **Query Decomposition**: 복잡한 연구 질문을 검색 가능한 하위 질문들(Sub-queries)로 분해합니다.
     * **Adaptive Routing**: 문서 내 정보가 부족할 경우 자동으로 **웹 검색(Tavily)**으로 전환하여 최신 정보를 보완합니다.
+
 * **직관적인 UI**: Streamlit을 활용하여 논문 업로드, 진행 상황 시각화, 채팅 인터페이스를 제공합니다.
 
 ## 🛠️ 기술 스택

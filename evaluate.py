@@ -15,7 +15,7 @@ load_dotenv()
 # 2. 평가 대상 타겟 정의 (RAG 체인/그래프)
 # 실제 평가 시에는 PDF를 로드한 상태의 그래프를 사용해야 합니다.
 # 테스트를 위해 로컬의 특정 PDF를 로드하여 retriever를 빌드합니다.
-pdf_path = "RAG Project 계획서.pdf" # 평가에 사용할 실제 PDF 파일 경로
+pdf_path = "data/RAG Project 계획서.pdf" # 평가에 사용할 실제 PDF 파일 경로
 retriever = build_retriever(pdf_path)
 
 # LangGraph 앱 컴파일 (검색기가 주입된 상태여야 함)
