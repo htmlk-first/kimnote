@@ -1,0 +1,14 @@
+streamlit
+langchain
+langchain-community
+langchain-openai
+langchain-text-splitters
+langchain-core
+langgraph
+faiss-cpu
+rank_bm25
+sentence-transformers
+tavily-python
+pymupdf
+python-dotenv
+openai
