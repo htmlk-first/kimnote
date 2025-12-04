@@ -7,7 +7,7 @@
 
 ## ✨ 주요 기능
 
-* **PDF 논문 분석**: 사용자가 업로드한 PDF 논문을 분석하여 지식 베이스를 구축합니다.
+* **PDF 논문 분석**: 사용자가 업로드한 PDF 논문을 분석하여 지식 베이스를 구축합니다. 
 * **고급 검색 시스템 (Advanced Retrieval)**:
     * **Ensemble Retriever**: 키워드 검색(BM25)과 의미 기반 검색(FAISS Vector)을 결합하여 UAV 분야의 전문 용어(예: SINR, Trajectory Optimization)와 문맥적 의미를 모두 포착합니다.
     * **Cross-Encoder Reranker**: 검색된 문서의 관련성을 정밀하게 재순위화하여 정확도를 높입니다.
