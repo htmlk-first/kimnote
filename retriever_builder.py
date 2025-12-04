@@ -22,20 +22,21 @@ def build_retriever(file_path: str):
         st.write("2. 텍스트 분할 및 청킹...")
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
         splits = text_splitter.split_documents(docs)
-        texts = [d.page_content for d in splits]
-
-        if not texts:
+        if not splits:
             status.update(
-                label="⚠️ 문서에서 텍스트를 찾지 못했습니다.", state="error", expanded=True
+                label="⚠️ 문서에서 텍스트를 찾지 못했습니다.",
+                state="error",
+                expanded=True,
             )
             return None
 
         st.write("3. Vector Index (Dense) 생성 중...")
-        vectorstore = FAISS.from_texts(texts, EMBEDDING_MODEL)
+        # Document 객체 그대로 사용 (metadata 보존)
+        vectorstore = FAISS.from_documents(splits, EMBEDDING_MODEL)
         vector_retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
 
         st.write("4. BM25 Index (Sparse) 생성 중...")
-        bm25_retriever = BM25Retriever.from_texts(texts)
+        bm25_retriever = BM25Retriever.from_documents(splits)
         bm25_retriever.k = 5
 
         st.write("5. Ensemble 및 Reranker 설정...")
