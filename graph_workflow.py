@@ -8,10 +8,10 @@ from pydantic import BaseModel, Field
 
 from models import LLM_MODEL
 
-# -------------------------------------------------------------------
+# -----------------------------------------------------------------------
 # LangGraph에서 상태(State)를 표현할 TypedDict 정의
 # 각 노드 함수는 GraphState를 입력으로 받고, GraphState의 부분집합을 반환
-# -------------------------------------------------------------------
+# -----------------------------------------------------------------------
 class GraphState(TypedDict, total=False):
     question: str               # 사용자 질문 원문
     documents: List[str]        # 검색된 문서 리스트
@@ -39,10 +39,10 @@ class GradeHallucination(BaseModel):
     # 답변이 근거 문서(context)에 기반했는지를 이진(yes/no)으로 판단하는 지표
 
 
-# -------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # RAG + 품질관리 워크플로우를 정의하는 LangGraph 앱 생성 함수
 # retriever: 이미 build_retriever에서 구성된 최종 retriever (Ensemble + Reranker)
-# -------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 def create_rag_graph(retriever):
     """Retriever가 주입된 LangGraph 앱 생성"""
 
@@ -228,8 +228,10 @@ def create_rag_graph(retriever):
             
         return {"hallucination_status": status, "hallucination_retries": retries}   # 상태에 환각 여부와 최신 재시도 카운터를 저장
 
-    # --- 라우팅 함수들 (조건 분기 로직) ---
 
+    # -------------------------------------------------------------------
+    #                       라우팅 함수들 (조건 분기 로직)
+    # -------------------------------------------------------------------
     def decide_retrieval_route(state: GraphState) -> str:
         """
         grade 노드 이후의 분기 결정
@@ -259,8 +261,9 @@ def create_rag_graph(retriever):
             return "generate"   # 환각이지만 아직 재시도 가능 → 다시 generate 노드로 루프
 
 
-    # --- 그래프 조립 ---
-    
+    # -------------------------------------------------------------------
+    #                              그래프 조립
+    # -------------------------------------------------------------------
     # GraphState 타입을 상태로 사용하는 StateGraph 인스턴스 생성
     workflow = StateGraph(GraphState)
     
