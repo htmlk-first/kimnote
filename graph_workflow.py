@@ -184,7 +184,7 @@ def create_rag_graph(retriever):
             return {"documents": web_content}
         except Exception:
             return {"documents": ["웹 검색 도구를 사용할 수 없습니다."]}    # 검색 실패 시에도 그래프가 죽지 않고 fallback 텍스트를 반환
-
+        
     def hallucination_check_node(state: GraphState) -> GraphState:
         """
         - 입력: documents (근거 문서), generation (LLM 답변),
